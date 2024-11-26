@@ -1,3 +1,5 @@
+import 'dart:ui' as ui show ImageFilter;
+
 import 'package:flutter/material.dart';
 
 /// Configuration class for LoadyOverlay.
@@ -11,11 +13,15 @@ final class LoadyOverlayConfig {
   /// The [builder] parameter allows for a custom widget builder for the loading indicator.
   const LoadyOverlayConfig({
     this.backgroundColor = Colors.black26,
+    this.filter,
     this.builder,
   });
 
   /// The background color of the overlay.
   final Color backgroundColor;
+
+  /// The image filter to apply to the overlay.
+  final ui.ImageFilter? filter;
 
   /// A custom widget builder for the loading indicator.
   final WidgetBuilder? builder;
@@ -24,13 +30,16 @@ final class LoadyOverlayConfig {
   bool operator ==(covariant LoadyOverlayConfig other) {
     if (identical(this, other)) return true;
 
-    return other.backgroundColor == backgroundColor && other.builder == builder;
+    return other.backgroundColor == backgroundColor &&
+        other.builder == builder &&
+        other.filter == filter;
   }
 
   @override
-  int get hashCode => backgroundColor.hashCode ^ builder.hashCode;
+  int get hashCode =>
+      backgroundColor.hashCode ^ builder.hashCode ^ filter.hashCode;
 
   @override
   String toString() =>
-      'LoadyOverlayConfig(backgroundColor: $backgroundColor, loadingIndicator: $builder)';
+      'LoadyOverlayConfig(backgroundColor: $backgroundColor, loadingIndicator: $builder, filter: $filter)';
 }

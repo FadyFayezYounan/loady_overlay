@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 import 'loady_controller.dart';
@@ -78,12 +81,15 @@ abstract final class LoadyOverlay {
     Navigator.of(context)
         .push(
           LoadyOverlayRoute(
+            settings: const RouteSettings(name: 'LoadyOverlayRoute'),
+            filter: effectiveConfig.filter,
             backgroundColor: effectiveConfig.backgroundColor,
             builder: effectiveConfig.builder ??
                 (context) => const DefaultLoadyOverlayWidget(),
           ),
         )
         .whenComplete(() => _controller.changeStatus(LoadyOverlayStatus.idle));
+    // log("${ModalRoute.settingsOf(context)?.name}");
   }
 
   /// Hides the loading overlay if it is currently being displayed.
@@ -94,10 +100,9 @@ abstract final class LoadyOverlay {
   ///
   /// [context] The BuildContext to use for navigating.
   static void hide(BuildContext context) {
-    if (_controller.status.isLoading &&
-        Navigator.of(context).canPop() &&
-        ModalRoute.of(context) is LoadyOverlayRoute) {
+    if (_controller.status.isLoading) {
       Navigator.of(context).pop();
+      _controller.changeStatus(LoadyOverlayStatus.idle);
     }
   }
 }

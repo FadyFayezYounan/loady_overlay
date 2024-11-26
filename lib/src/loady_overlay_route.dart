@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class LoadyOverlayRoute extends ModalRoute<void> {
@@ -26,6 +28,8 @@ class LoadyOverlayRoute extends ModalRoute<void> {
   LoadyOverlayRoute({
     required this.builder,
     required this.backgroundColor,
+    super.settings,
+    super.filter,
   });
 
   final WidgetBuilder builder;

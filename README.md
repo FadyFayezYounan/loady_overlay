@@ -15,7 +15,7 @@ Add the following to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  loady_overlay: ^0.0.1
+  loady_overlay: ^0.0.3
 ```
 
 Then run:
