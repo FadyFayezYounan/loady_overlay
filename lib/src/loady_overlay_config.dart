@@ -10,7 +10,7 @@ final class LoadyOverlayConfig {
   /// The [backgroundColor] parameter specifies the background color of the overlay.
   /// The [builder] parameter allows for a custom widget builder for the loading indicator.
   const LoadyOverlayConfig({
-    this.backgroundColor = Colors.black12,
+    this.backgroundColor = Colors.black26,
     this.builder,
   });
 

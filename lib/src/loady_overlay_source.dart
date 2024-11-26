@@ -94,7 +94,9 @@ abstract final class LoadyOverlay {
   ///
   /// [context] The BuildContext to use for navigating.
   static void hide(BuildContext context) {
-    if (_controller.status.isLoading) {
+    if (_controller.status.isLoading &&
+        Navigator.of(context).canPop() &&
+        ModalRoute.of(context) is LoadyOverlayRoute) {
       Navigator.of(context).pop();
     }
   }
